@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   # boxes at https://vagrantcloud.com/search.
 
   config.vm.define "k8sMaster" do |k8sMaster|
-    k8sMaster.vm.box = "ubuntu/trusty64"
+    k8sMaster.vm.box = "ubuntu/focal64"
     k8sMaster.vm.hostname = "k8sMaster"
     k8sMaster.vm.network "private_network", ip: "192.168.56.111"
     k8sMaster.vm.provider "virtualbox" do |vb|
@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "k8sWorker1" do |k8sWorker1|
-    k8sWorker1.vm.box = "ubuntu/trusty64"
+    k8sWorker1.vm.box = "ubuntu/focal64"
     k8sWorker1.vm.hostname = "k8sWorker1"
     k8sWorker1.vm.network "private_network", ip: "192.168.56.112"
     k8sWorker1.vm.provider "virtualbox" do |vb|
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "k8sWorker2" do |k8sWorker2|
-    k8sWorker2.vm.box = "ubuntu/trusty64"
+    k8sWorker2.vm.box = "ubuntu/focal64"
     k8sWorker2.vm.hostname = "k8sWorker2"
     k8sWorker2.vm.network "private_network", ip: "192.168.56.113"
     k8sWorker2.vm.provider "virtualbox" do |vb|
