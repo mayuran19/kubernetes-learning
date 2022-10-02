@@ -16,30 +16,33 @@ Vagrant.configure("2") do |config|
   config.vm.define "k8sMaster" do |k8sMaster|
     k8sMaster.vm.box = "ubuntu/focal64"
     k8sMaster.vm.hostname = "k8sMaster"
-    k8sMaster.vm.network "private_network", ip: "192.168.56.111"
+    k8sMaster.vm.network "private_network", ip: "10.0.0.2"
     k8sMaster.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "2048"
       vb.cpus = "2"
+      #vb.customize ['modifyvm', :id, '--natnet1', '192.168.222.0/24']
     end
   end
 
   config.vm.define "k8sWorker1" do |k8sWorker1|
     k8sWorker1.vm.box = "ubuntu/focal64"
     k8sWorker1.vm.hostname = "k8sWorker1"
-    k8sWorker1.vm.network "private_network", ip: "192.168.56.112"
+    k8sWorker1.vm.network "private_network", ip: "10.0.0.3"
     k8sWorker1.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "2048"
       vb.cpus = "2"
+      #vb.customize ['modifyvm', :id, '--natnet1', '192.168.222.0/24']
     end
   end
 
   config.vm.define "k8sWorker2" do |k8sWorker2|
     k8sWorker2.vm.box = "ubuntu/focal64"
     k8sWorker2.vm.hostname = "k8sWorker2"
-    k8sWorker2.vm.network "private_network", ip: "192.168.56.113"
+    k8sWorker2.vm.network "private_network", ip: "10.0.0.4"
     k8sWorker2.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024"
+      vb.memory = "2048"
       vb.cpus = "2"
+      #vb.customize ['modifyvm', :id, '--natnet1', '192.168.222.0/24']
     end
   end
 
@@ -72,7 +75,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "../data", "/vagrant_data"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
