@@ -44,3 +44,19 @@ KUBELET_EXTRA_ARGS="--node-ip=10.0.0.3"
 
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet.service
+
+## Create new user
+1. Login to the master node
+mkdir cert && cd cert
+
+openssl genrsa -out mayuran.key 2048
+
+openssl req -new -key mayuran.key -out mayuran.csr -subj "/CN=mayuran/O=cka-study-guide"
+
+sudo openssl x509 -req -in mayuran.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out mayuran.crt -days 364
+
+kubectl config set-credentials mayuran --client-certificate=mayuran.crt --client-key=mayuran.key
+
+kubectl config set-context mayuran-context --cluster=kubernetes --user=mayuran
+
+kubectl config use-context mayuran-context
